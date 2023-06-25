@@ -1,0 +1,17 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"module": "CommonJS",
+		"target": "es2022",
+		"outDir": "dist",
+		"declaration": true,
+		"sourceMap": true,
+		"alwaysStrict": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
+	},
+	"include": ["src"],
+	"exclude": ["**/*.spec.ts"]
+}
