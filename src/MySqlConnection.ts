@@ -1,7 +1,8 @@
 import { Connection, Result, ResultSetMetaData, ResultSetColumnMetadata, SqlType } from "db-conn";
+import * as mysql2 from 'mysql2/promise.js';
 
 export class MySqlConnection implements Connection {
-	private client: any;
+	private client: mysql2.Connection;
 	public constructor(client: any) {
 		this.client = client;
 
@@ -13,7 +14,7 @@ export class MySqlConnection implements Connection {
 	public async execute(sql: string, params?: any): Promise<Result> {
 		const [rows, fields] = await this.client.execute(sql, params);
 		const rt: Result = {};
-		rt.data = rows;
+		rt.data = rows as any;
 		return rt;
 	}
 	public async executeQuery(sql: string, params?: any): Promise<object[]> {
@@ -24,9 +25,12 @@ export class MySqlConnection implements Connection {
 		return rt.data;
 	}
 	public async setAutoCommit(autoCommit: boolean): Promise<void> {
-		if (!autoCommit) {
-			const rt = await this.execute("begin");
+		if (autoCommit) {
+			await this.execute("set autocommit = 1");
+			return;
+			//const rt = await this.execute("start transaction");
 		}
+		await this.execute("set autocommit = 0");
 	}
 	public async commit(): Promise<void> {
 		const rt = await this.execute("commit");
