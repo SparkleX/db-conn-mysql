@@ -12,6 +12,6 @@ const config: MySqlConnectionConfig = {
 
 let conn: Connection;
 conn = await driver.connect(config);
-let rt = await conn.executeQuery(`select * from information_schema.tables`);
+let rt = await conn.executeQuery("SELECT * FROM `ORDR`");
 console.debug(rt);
 await conn.close();

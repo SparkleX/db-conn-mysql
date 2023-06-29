@@ -11,7 +11,10 @@ export class MySqlConnection implements Connection {
 		delete this.client;
 	}
 	public async execute(sql: string, params?: any): Promise<Result> {
-		return null;
+		const [rows, fields] = await this.client.execute(sql, params);
+		const rt: Result = {};
+		rt.data = rows;
+		return rt;
 	}
 	public async executeQuery(sql: string, params?: any): Promise<object[]> {
 		const rt: Result = await this.execute(sql, params);
