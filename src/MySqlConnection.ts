@@ -3,11 +3,16 @@ import * as mysql2 from 'mysql2/promise.js';
 
 export class MySqlConnection implements Connection {
 	private client: mysql2.Connection;
-	public constructor(client: any) {
+    private oPool: mysql2.Pool;
+	public constructor(client: any, oPool?: mysql2.Pool) {
 		this.client = client;
-
+		this.oPool = oPool;
 	}
 	public async close(): Promise<void> {
+		if (this.oPool) {
+			this.oPool.releaseConnection(this.client as any);
+			return;
+		}
 		await this.client.end();
 		delete this.client;
 	}
