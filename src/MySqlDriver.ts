@@ -9,5 +9,6 @@ export class MySqlDriver implements Driver {
 		const _conn = await mysql2.createConnection(config);
 		const rt = new MySqlConnection(_conn);
 		return rt;
+		//return null;
 	}
 }
