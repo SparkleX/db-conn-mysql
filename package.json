@@ -10,7 +10,8 @@
     "clean": "rimraf dist coverage",
     "test": "jest"
   },
-  "author": "",
+  "homepage": "https://github.com/SparkleX/db-conn-mysql",
+  "author": "Sun, Xufei",
   "license": "ISC",
   "dependencies": {
     "db-conn": "^1.4.1",
