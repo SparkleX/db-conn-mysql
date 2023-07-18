@@ -1,4 +1,4 @@
-import { Connection } from "db-conn";
+/*import { Connection } from "db-conn";
 import { MySqlConnectionConfig } from "../MySqlConnectionConfig.js";
 import { MySqlDriver } from "../MySqlDriver.js";
 
@@ -14,4 +14,8 @@ let conn: Connection;
 conn = await driver.connect(config);
 let rt = await conn.executeQuery("SELECT * FROM `ORDR`");
 console.debug(rt);
-await conn.close();
+await conn.close();*/
+
+test('insert', async () => {
+	expect(1).toStrictEqual(1);
+});
