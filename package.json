@@ -1,14 +1,13 @@
 {
   "name": "db-conn-mysql",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "run": "ts-node src/test.ts",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist coverage",
     "test": "jest"
   },
   "author": "",

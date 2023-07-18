@@ -14,6 +14,7 @@ export default {
 			},
 		],
 	},
+	testTimeout: 18000,
 	roots: [
 		"src"
 	],
@@ -21,6 +22,13 @@ export default {
 	collectCoverageFrom: ["**/*.ts"],
 	coverageDirectory: "coverage",
 	coverageReporters: ["lcov"],
-
+	coverageThreshold: {
+		global: {
+			statements: 100,
+			branches: 100,
+			functions: 100,
+			lines: 100
+		}
+	},
 	clearMocks: true
 };

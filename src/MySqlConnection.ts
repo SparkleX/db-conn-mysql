@@ -19,7 +19,10 @@ export class MySqlConnection implements Connection {
 	public async execute(sql: string, params?: any): Promise<Result> {
 		const [rows, fields] = await this.client.execute(sql, params);
 		const rt: Result = {};
-		rt.data = rows as any;
+		rt.affectedRows = rows["affectedRows"];
+		if( rt.affectedRows == undefined) {
+			rt.data = rows as any;
+		}
 		return rt;
 	}
 	public async executeQuery(sql: string, params?: any): Promise<object[]> {
@@ -33,7 +36,6 @@ export class MySqlConnection implements Connection {
 		if (autoCommit) {
 			await this.execute("set autocommit = 1");
 			return;
-			//const rt = await this.execute("start transaction");
 		}
 		await this.execute("set autocommit = 0");
 	}
